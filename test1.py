@@ -1,16 +1,36 @@
 def encrypt(text, n):
     if len(text) == 0 or not text:
         return text
+
     if n <= 0:
         return text
+
     i = 0
     while i < n:
         result = "".join(text[index].lower() for index in range(1, len(text), 2))
         result2 = "".join(text[index].lower() for index in range(0, len(text), 2))
         text = result + result2
         i += 1
+
     encrypted_text = text
     return encrypted_text
+
+
+def my_decrypt(text_):
+    middle = int(len(text_) / 2)
+    first_part = text_[:middle]
+    second_part = text_[middle:]
+
+    res = ""
+    pairs = zip(second_part, first_part)
+
+    for pair in pairs:
+        res += pair[0] + pair[1]
+
+    if len(text_) & 1:
+        res += second_part[-1]
+
+    return res
 
 
 def decrypt(encrypted_text, n):
@@ -18,19 +38,6 @@ def decrypt(encrypted_text, n):
         return text
     if n <= 0:
         return text
-
-    def my_decrypt(text_):
-        middle = int(len(text_) / 2)
-        first_part = text_[:middle]
-        second_part = text_[middle:]
-
-        res = ""
-        pairs = zip(second_part, first_part)
-        for pair in pairs:
-            res += pair[0] + pair[1]
-        if len(text_) & 1:
-            res += second_part[-1]
-        return res
 
     for i in range(n):
         encrypted_text = my_decrypt(encrypted_text)
