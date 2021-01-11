@@ -44,12 +44,14 @@ def decrypt(encrypted_text, n):
     return encrypted_text
 
 
-text = "1234567890ab"
-n = 15
+text = input("Enter your text: ")
+n = int(input("n = "))
 encrypted_text = encrypt(text, n)
 print(encrypted_text)
 print(decrypt(encrypted_text, n))
 
+
+# Test
 text1 = str()
 stats = 0
 all_tries = 100
